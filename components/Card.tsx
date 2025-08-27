@@ -3,6 +3,16 @@ import { groq } from 'next-sanity'
 import React from 'react'
 import Projects from './Projects'
 
+interface Props {
+    name: string;
+    description: string;
+    images: string[];
+    price: string;
+    slug: {
+        current: string;
+    }
+}
+
 const Card = async () => {
     const properties = await client.fetch(groq`*[_type == "property"] `)
 
@@ -17,7 +27,7 @@ const Card = async () => {
 
             {/* Projects Section */}
             <div className="mx-auto container grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
-                {properties.map((property: any, index: number) => (
+                {properties.map((property: Props, index: number) => (
                     <Projects key={index} property={property} />
                 ))
                 }
