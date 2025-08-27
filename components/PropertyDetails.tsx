@@ -7,13 +7,27 @@ import { GrMoney } from "react-icons/gr";
 import { Button } from './ui/button';
 import { MdAddCall } from "react-icons/md";
 
-const PropertyDetails = ({ property }: any) => {
+interface Props {
+    name: string;
+    description: string;
+    images: string[];
+    price: string;
+    slug: {
+        current: string;
+    }
+}
+
+interface ProjectsProps {
+    property: Props;
+}
+
+const PropertyDetails = ({ property }: ProjectsProps) => {
     return (
         <div className='mx-auto container flex flex-col md:flex-row gap-8 p-6 md:p-16'>
             <div>
                 <Image
                     src={urlFor(property.images[0]).url()}
-                    alt={property.slug}
+                    alt={property.name}
                     width={500}
                     height={300}
                 />

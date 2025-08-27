@@ -6,7 +6,21 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
 import { Button } from './ui/button'
 import { GiClick } from "react-icons/gi";
 
-const Projects = ({ property }: any) => {
+interface Props {
+    name: string;
+    description: string;
+    images: string[];
+    price: string;
+    slug: {
+        current: string;
+    }
+}
+
+interface ProjectsProps {
+    property: Props;
+}
+
+const Projects = ({ property }: ProjectsProps) => {
     return (
         <section>
         <div>
@@ -15,7 +29,7 @@ const Projects = ({ property }: any) => {
                     <div className='relative h-60 w-full'>
                         <Image
                             src={urlFor(property.images && property.images[0]).url()}
-                            alt={property.slug}
+                            alt={property.name}
                             layout='fill'
                             objectFit='cover'
                             className='group-hover:opacity-90 transition-opacity duration-300 rounded-t-lg'
